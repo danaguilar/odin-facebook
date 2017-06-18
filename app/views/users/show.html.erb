@@ -1,0 +1,31 @@
+<div class="container">
+  <div class = "row">
+    <div class = "col-sm-4">
+      <h1><%=@user.name %></h1>
+      <div class = "user-picture-container">
+         <%= image_tag(@user.role_image, class: "img-responsive") %>
+      </div>
+    </div>
+
+    <div class = "col-sm-8">
+      <% if @current_user_signed_in %>
+        <div class = "post-container">
+          <%= form_for @post, class: "form-inline" do |f|%>
+          <div class="form-group">
+            <%= f.text_field :body, class: "form-control" %>
+          </div>
+            <%= hidden_field_tag "user_id", @user.id.to_s %>
+            <%= f.submit :Post, class: "btn btn-default"%>
+          <% end %>
+        </div>
+      <% end %>
+      <% @user_posts.each do |post| %>
+        <div class = "well">
+          <%= post.body %>
+        </div>
+         <!-- comments will go here -->
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+PLAYER_ROLES = [
+  "assassin",
+  "support",
+  "tank",
+  "specialist"
+]
+
+50.times do |num|
+  User.create(name: Faker::Name.name, email: "example#{num}@test.com", password: 'password', player_role: PLAYER_ROLES[Random.rand(3)])
+end
